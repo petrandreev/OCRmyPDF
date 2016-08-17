@@ -182,7 +182,10 @@ def _find_page_inline_images(page, pageinfo, contentsinfo):
         image['width'] = settings['/W']
         image['height'] = settings['/H']
         image['bpc'] = settings['/BPC']
-        image['color'] = FRIENDLY_COLORSPACE.get(settings['/CS'], '-')
+        if '/CS' in settings:
+            image['color'] = FRIENDLY_COLORSPACE.get(settings['/CS'], '-')
+        else:
+            image['color'] = '-'
         image['comp'] = FRIENDLY_COMP.get(image['color'], '?')
         if '/F' in settings:
             filter_ = settings['/F']
